@@ -22,8 +22,20 @@ The Todo List API is a RESTful service that allows users to manage their todo li
     ```bash
     pip install -r requirements.txt
     ```
+3. **Install Docker and MySQL Image**:
 
-3. **Set up the MySQL database:**
+    First, [install Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+    Then, log in using the command line:
+
+    ```bash
+    docker login
+    ```
+    After logging in, download the MySQL image:
+    ```bash
+    docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0
+    ```
+5. **Set up the MySQL database:**
 
     - At the start of the API, it will automatically generate a new MySQL database and table if they do not already exist
 
