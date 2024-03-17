@@ -42,6 +42,14 @@ Docker
 
 ## Usage
 
+### Test run
+
+To start an API, you can use the following command in the command line:
+```bash
+ uvicorn main:app --reload 
+```
+Then, open the browser with the [specified URL](http://127.0.0.1:8000/docs)
+
 ### Authentication
 
 To use the API, users need to authenticate using their credentials.
