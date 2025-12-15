@@ -1,0 +1,41 @@
+services:
+  db:
+    image: mysql:8
+    container_name: mysql-todo
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: todo_list_DB
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: fastapi-backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "mysql+pymysql://root:my-secret-pw@db:3306/todo_list_DB"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    container_name: vite-frontend
+    ports:
+      - "127.0.0.1:5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
