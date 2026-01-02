@@ -1,68 +1,90 @@
-# Todo List API
+🗂️ Task Manager App
 
-The Todo List API is a RESTful service that allows users to manage their todo lists. It provides endpoints for creating, updating, deleting, and retrieving tasks in todo lists for multiple users. The API uses MySQL as the backend database for storing user information and their associated tasks.
+A simple task manager application built to practice full-stack development and containerization with Docker.
+
+## Screenshots
+
+![Task List](./screenshots/task.png)
+
+## Project Overview
+
+This Task Manager App was built as a learning project to understand how a full-stack application works end-to-end, including frontend development, backend APIs, database integration, and containerized deployment using Docker.
 
 ## Features
 
-- User authentication and authorization
-- Create, read, update, and delete operations for tasks
-- Support for multiple users
-- Persistent storage using MySQL
-  
+- Create, read, update, and delete tasks
+- Mark tasks as completed
+- Filter tasks by status (all, completed, pending)
+- Responsive design for mobile and desktop
+- RESTful API backend
+- Dockerized for easy deployment
+
+## Technologies Used
+
+- React (Frontend)
+- Python + Flask (Backend)
+- MySQL (Database)
+- Docker (Containerization)
+- Docker Compose (Multi-container orchestration)
+
+## What I Learned
+
+Through this project, I learned:
+
+- How to build a RESTful API using Flask
+- How to connect a backend service to a MySQL database
+- How to manage state and API calls in React
+- How to containerize applications using Docker
+- How to orchestrate multiple services with Docker Compose
+- How to document and share a project using a README
+
 ## Prerequisites
-Docker
-<br />
-## Installation
 
-1. **Clone the repository:**
+- Docker installed on your machine
+- Docker Compose installed on your machine
+- Basic knowledge of Docker and Docker Compose
 
-    ```bash
-    git clone https://github.com/matej-tomik/todo-list
-    ```
+## Getting Started
 
-2. **Install dependencies:**
+1. Clone the repository:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. **Install MySQL Image**:
-    Log in using the command line:
+   ```bash
+   git clone https://github.com/matej-tomik/todo_list
+   cd todo-list
+   ```
 
-    ```bash
-    docker login
-    ```
-    After logging in, download the MySQL image:
-   
-    ```bash
-    docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0
-    ```
-5. **Set up the MySQL database:**
+2. Run the Docker containers:
+   ```bash
+   docker-compose up -d
+   ```
+3. Access the application:
 
-    - At the start of the API, it will automatically generate a new MySQL database and table if they do not already exist
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000/docs
 
-## Usage
+4. To stop the application, run:
+   ```bash
+   docker-compose down
+   ```
 
-### Test run
+## Project Structure
 
-To start an API, you can use the following command in the command line:
-```bash
- uvicorn main:app --reload 
-```
-Then, open the browser with the [specified URL](http://127.0.0.1:8000/docs)
+- `frontend/`: Contains the React application code.
+- `backend/`: Contains the FastAPI code.
+- `docker-compose.yml`: Docker Compose configuration file.
+- `README.md`: Project documentation.
 
-### Authentication
+## Future Improvements
 
-To use the API, users need to authenticate using their credentials.
+- User authentication
+- Task priorities and due dates
+- Search and sorting
+- Deployment to a cloud platform
 
-### Endpoints
+## Contributing
 
-- **GET /list-tasks:** Retrieve all tasks for the authenticated user.
-- **PUT /create-task:** Create a new task for the authenticated user.
-- **GET /get-task/:id:** Retrieve a specific task by ID.
-- **PUT /update-task/:id:** Update a specific task by ID.
-- **DELETE /delete-task/:id:** Delete a specific task by ID.
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
+## License
 
-## Contact
-
-For any inquiries or support, please contact [Matěj Tomík](mailto:mtomik.work@gmail.com).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details
